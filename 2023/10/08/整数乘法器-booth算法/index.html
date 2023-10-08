@@ -3,7 +3,7 @@
 <html lang="zh-CN,en,default">
 <head>
     <meta charset="utf-8" />
-    <title>Categories: 杂想 | 黑洞</title>
+    <title>整数乘法器-booth算法 | 黑洞</title>
     <meta name="author" content="Irfnfnkemed" />
     <meta name="description" content="总要惘然选择欢喜带来的忧愁，总要坦然面对失去换来的拥有" />
     <meta name="keywords" content="" />
@@ -36,6 +36,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -149,38 +153,20 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/categories/%E6%9D%82%E6%83%B3/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                杂想
-            </a>
+            <div class="article">
+    <div>
+        <h1>整数乘法器-booth算法</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/8
         </span>
         
-        
-        
-        
-        
-        <span>
-            <a href="/categories/%E7%89%A9%E7%90%86/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                物理
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="background: #00bcd4">
+        <span class="category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -189,43 +175,143 @@
         </span>
         
         
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E5%99%A8/" style="color: #ffa2c4">整数乘法器</a>
+            </span>
+            
+        </span>
+        
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/30</div>
-            <a href="/2023/09/30/hello/">
-                <h3>hello</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E6%9D%82%E6%83%B3/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        杂想
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E8%83%A1%E8%A8%80%E4%B9%B1%E8%AF%AD/" style="color: #ffa2c4">胡言乱语</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p>正在学习整数乘法器。</p>
+<span id="more"></span>
+<h1 id="booth算法"><a href="#booth算法" class="headerlink" title="booth算法"></a>booth算法</h1><p> 考虑$y \times x$，<br> 改写2进制下n位数的补码y:<br> $$\begin{align*}y&amp;&#x3D;-y_{[n-1]}\cdot 2^{n-1}+y_{[n-2]}\cdot 2^{n-2}+y_{[n-3]}\cdot 2^{n-3}+…+y_{[0]}\cdot 2^{0}\&amp;&#x3D;(-2y_{[n-1]}+y_{[n-2]}+y_{[n-3]})\cdot 2^{n-2}+(-2y_{[n-3]}+y_{[n-4]}+y_{[n-5]})\cdot 2^{n-4}+…+(-2y_{[1]}+y_{[0]}+y_{[-1]})\cdot 2^{0}\end{align*}$$<br> 【其中$y_{[-1]}&#x3D;0$】</p>
+<p> 记$-2y_{[k+1]}+y_{[k]}+y_{[k-1]}&#x3D;z_{[k]}$，那么得到<br> $$y&#x3D;z_{[n-2]}\cdot 2^{n-2}+…+z_{0}\cdot 2^0$$</p>
+<p>考虑$z_{[k]}$的取值情况，列出真值表，并列出相应操作($x$ 是被乘数)</p>
+<table>
+<thead>
+<tr>
+<th>$y_{[k+1]}$</th>
+<th>$y_{[k]}$</th>
+<th>$y_{[k-1]}$</th>
+<th>$z_{[k]}$</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>无</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>+x</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>+x</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>+(x&lt;&lt;1)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>-2</td>
+<td>+((-x)&lt;&lt;1)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>+(-x)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+<td>+(-x)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p>$x,-x,x&lt;&lt;1,(-x)&lt;&lt;1$可以一次性算出。 </p>
+<p>采用基$-4; booth$编码实现16位整数乘法器，具体代码见 <a target="_blank" rel="noopener" href="https://github.com/Irfnfnkemed/ALU">16位整数乘法器</a>。</p>
+<h2 id="待解决的疑惑："><a href="#待解决的疑惑：" class="headerlink" title="待解决的疑惑："></a>待解决的疑惑：</h2><font color='orange'>
+
+<p><strong>从期望上看，采用booth编码后，对于n位乘法，平均加法次数为n&#x2F;2。然而，若不采用booth编码，显然平均加法次数亦为n&#x2F;2。查阅资料后也证实booth编码并不能保证比传统乘法更好的性能。那么为何多此一举地采用这种编码方式？</strong></p>
+<p><strong>采用随机数验证，确认以上分析正确。即使是每次采用booth编码和传统乘法中的加法次数较小者，结果大约有15%的优化，感觉和付出的消耗不成正比。</strong></p>
+</font>
+
+
+<p>附验证代码：</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;ctime&gt;
+
+int main() &#123;
+    srand(time(nullptr));
+    int a[17];
+    a[0] = 0;
+    long long standard = 0, booth = 0, combine = 0;
+    for (int i = 1; i &lt; 1000000; ++i) &#123;
+        int tmp1 = 0, tmp2 = 0;
+        for (int j = 1; j &lt; 17; ++j) &#123;
+            a[j] = rand() % 2;
+        &#125;
+        for (int j = 1; j &lt; 17; ++j) &#123;
+            if (a[j]) &#123;
+                ++tmp1;
+            &#125;
+            if (a[j] != a[j - 1]) &#123;
+                ++tmp2;
+            &#125;
+        &#125;
+        standard += tmp1;
+        booth += tmp2;
+        combine += std::min(tmp1, tmp2);
+    &#125;
+    std::cout &lt;&lt; &quot;standard:&quot; &lt;&lt; standard / (double) 1000000 &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;booth:&quot; &lt;&lt; booth / (double) 1000000 &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;combine:&quot; &lt;&lt; combine / (double) 1000000 &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -257,6 +343,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 
