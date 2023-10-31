@@ -3,7 +3,7 @@
 <html lang="zh-CN,en,default">
 <head>
     <meta charset="utf-8" />
-    <title>tags | 黑洞</title>
+    <title>超前进位加法器 | 黑洞</title>
     <meta name="author" content="Irfnfnkemed" />
     <meta name="description" content="总要惘然选择欢喜带来的忧愁，总要坦然面对失去换来的拥有" />
     <meta name="keywords" content="" />
@@ -36,6 +36,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -149,67 +153,70 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
+            <div class="article">
+    <div>
+        <h1>超前进位加法器</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/31
+        </span>
         
-        
-        
-        <span>
-            <a href="/tags/%E8%83%A1%E8%A8%80%E4%B9%B1%E8%AF%AD/" style="background: #00a596">
+        <span class="category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
                 <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                胡言乱语
+                计算机
             </a>
         </span>
         
         
-        
-        <span>
-            <a href="/tags/%E6%AD%A3%E4%BA%A4%E5%9D%90%E6%A0%87%E7%B3%BB/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                正交坐标系
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%B6%85%E5%89%8D%E8%BF%9B%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8/" style="color: #00a596">超前进位加法器</a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%8F%8C%E7%90%83%E5%9D%90%E6%A0%87%E7%B3%BB/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                双球坐标系
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E5%99%A8/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                整数乘法器
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%B6%85%E5%89%8D%E8%BF%9B%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                超前进位加法器
-            </a>
-        </span>
-        
         
     </div>
+    
+    <div class="content" v-pre>
+        <p>发现为了加深理解，还是需要具体写一下超前进位加法器的原理。</p>
+<span id="more"></span>
+
+<p>加法器最自然的想法是涟漪加法器，即逐位进行运算。但是，在涟漪加法器中，每一位上都是全加器，需要知道前一位的进位信号后才能进行运算，这样会导致每一位上都累积延迟，最后导致整个涟漪加法器产生较大的延迟。</p>
+<p>而超前进位加法器中，利用半加器，可以预先并同时计算每一位的进位信号，这样可以以并行的方式进行计算，从而减少整体加法运算的延迟时间。因此，超前进位加法器相对于涟漪加法器可以获得更好的性能。</p>
+<p>先考虑4位加法器。设两数$a_{[3:0]},b_{[3:0]}$相加，结果为$s_{[3:0]}$。设第$i$位(0-based)上向前的进位为$c_{i}$。设输入进位(可以视作$c_{-1}$)为$c_{in}$，输出进位(可以视作$c_3$)为$c_{out}$。</p>
+<p>应有(在{0,1}内考虑)<br>$$\begin{align*}s_i&amp;&#x3D;a_i+b_i+c_{i-1}\\&amp;&#x3D;(a_i+b_i)+c_{i-1}\\ \\ c_i&amp;&#x3D;a_i *b_i+a_i*c_{i-1}+b_i*c_{i-1}\\&amp;&#x3D;(a_i+b_i)*c_{i-1}+a_i*b_i\end{align*}$$</p>
+<p>故记$p_i&#x3D;a_i+b_i$， $q_i&#x3D;a_i*b_i$，有</p>
+<p>$$\begin{align*}c_i&amp;&#x3D;a_i*b_i+a_i*c_{i-1}+b_i*c_{i-1}\\&amp;&#x3D;(a_i+b_i)*c_{i-1}+a_i*b_i\end{align*}$$</p>
+<p>故有</p>
+<p>$$\begin{align*}c_0&amp;&#x3D;p_0*c_{in}+g_0\\c_1&amp;&#x3D;p_1*p_0*c_{in}+p_1*g_0+g_1\\c_2&amp;&#x3D;p_2*p_1*p_0*c_{in}+p_2*p_1*g_0+p_2*g_1+g_2\\c_{out}&amp;&#x3D;p_3*p_2*p_1*p_0*c_{in}+p_3*p_2*p_1*g_0+p_3*p_2*g_1+p_3*g_2+g_3\end{align*}$$</p>
+<p>然后再考虑16位加法器。当然可以重复上面的做法扩展至16位，但是这会导致电路复杂度急剧增加，扇入过大，导致较大的时延。因此，不妨将每四位封装起来，然后通过数学变形，计算出每四位等效的p和q，然后类似前面的做法，在封装起来的各个4位组之间搭建超前进位加法器，这样就可以完整地实现超前进位加法器了。具体如下：</p>
+<p>设两数$a_{[15:0]},b_{[15:0]}$相加，结果为$s_{[15:0]}$。将每4位封装为一组，记作$\tilde{a}_{[3:0]},\tilde{b}_{[3:0]}$。设第$i$个(0-based)4位组上向前的进位为$\tilde{c}_{i}$。设输入进位(可以视作$\tilde{c}_{-1}$)为$\tilde{c}_{in}$，输出进位(可以视作$\tilde{c}_3$)为$\tilde{c}_{out}$。</p>
+<p>对于每个4位组，令等效<br>$$\begin{align*}\tilde{p}&amp;&#x3D;p_3*p_2*p_1*p_0\\\\\tilde{g}&amp;&#x3D; p_3*p_2*p_1*g_0+p_3*p_2*g_1+p_3*g_2+g_3\end{align*}$$<br>则有<br>$$\begin{align*}c_{out}&#x3D;\tilde{p}*c_{in}+\tilde{g}\end{align*}$$</p>
+<p>故有</p>
+<p>$$\begin{align*}\tilde{c}_0&amp;&#x3D; \tilde{p}_0 *\tilde{c}_{in}+\tilde{g}_0\\\tilde{c}_1&amp;&#x3D;\tilde{p}_1*\tilde{p}_0*\tilde{c}_{in}+\tilde{p}_1*\tilde{g}_0+\tilde{g}_1\\\tilde{c}_2&amp;&#x3D;\tilde{p}_2*\tilde{p}_1*\tilde{p}_0*\tilde{c}_{in}+\tilde{p}_2*\tilde{p}_1*\tilde{g}_0+\tilde{p}_2*\tilde{g}_1+\tilde{g}_2\\\tilde{c}_{out}&amp;&#x3D;\tilde{p}_3*\tilde{p}_2*\tilde{p}_1*\tilde{p}_0*\tilde{c}_{in}+\tilde{p}_3*\tilde{p}_2*\tilde{p}_1*\tilde{g}_0+\tilde{p}_3*\tilde{p}_2*\tilde{g}_1+\tilde{p}_3*\tilde{g}_2+\tilde{g}_3\end{align*}$$</p>
+<p>这里的表达式和前面是完全相同的，因此可以以相同的方式在4位组之间搭建起超前进位加法器。用这样的方法，可以拓展至高位数加法器。<br>另外，在最后一级超前加法器，有$\tilde{c}_{in}&#x3D;0$，$\tilde{c}_{out}$表示溢出位。</p>
+<p>实现：<a target="_blank" rel="noopener" href="https://github.com/Irfnfnkemed/ALU/blob/main/adder/adder-ripple.v">涟漪加法器</a>，<a target="_blank" rel="noopener" href="https://github.com/Irfnfnkemed/ALU/blob/main/adder/adder-carry.v">超前进位加法器</a>。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -241,6 +248,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 
