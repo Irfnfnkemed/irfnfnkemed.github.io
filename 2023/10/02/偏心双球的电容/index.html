@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+    <meta charset="utf-8" />
+    <title>偏心双球的电容 | 黑洞</title>
+    <meta name="author" content="Irfnfnkemed" />
+    <meta name="description" content="总要惘然选择欢喜带来的忧愁，总要坦然面对失去换来的拥有" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>黑洞</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;黑洞</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>偏心双球的电容</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%89%A9%E7%90%86/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                物理
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%AD%A3%E4%BA%A4%E5%9D%90%E6%A0%87%E7%B3%BB/" style="color: #03a9f4">
+                    正交坐标系
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%8F%8C%E7%90%83%E5%9D%90%E6%A0%87%E7%B3%BB/" style="color: #00bcd4">
+                    双球坐标系
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>前段时间，在看保角变换计算偏心圆柱的电容时，联想到偏心球体的电容。下面来计算偏心双球的电容。</p>
+<span id="more"></span>
+<h2 id="建立模型"><a href="#建立模型" class="headerlink" title="建立模型"></a>建立模型</h2><p>假设真空中有两个球壳导体，构成一个电容。两球壳的半径分别为$R_1,R_2$，球壳球心相距$d$。假设球壳1位于球壳2内部，即 $R_1&lt; R_2$，$d&lt;R_2-R_1$。</p>
+<h2 id="双球坐标系"><a href="#双球坐标系" class="headerlink" title="双球坐标系"></a>双球坐标系</h2><p>引入双球坐标系（双极坐标系的升维）<br>$${\begin{align*}x &#x3D; a\frac{\sin\eta\cos\phi}{\cosh\mu-\cos\eta}\\ y &#x3D; a\frac{\sin\eta\sin\phi}{\cosh\mu-\cos\eta}\\ z &#x3D; a\frac{\sinh\mu}{\cosh\mu-\cos\eta}\end{align*}}\tag{1}$$<br>其中$a&gt;0$为常数，$\eta\in[0,\pi)$，$\mu\in(-\infty,\infty)$，$\phi\in[0,2\pi)$。<br>易知有<br>$$x^2+y^2+\left(z-a\frac{\cosh\mu}{\sinh\mu}\right)^2 &#x3D; \left(\frac{a}{\sinh\mu}\right)^2\tag{2}$$<br>因此等$\mu$面可以刻画出偏心双球面。根据对称性，设两球壳球心的位置分别为$(0,0,a\coth\mu_1)$和$(0,0,a\coth\mu_2)$。有<br>$$\begin{align*}&amp;a (-\coth\mu_1+\coth\mu_2) &#x3D; d\\&amp;\frac{a}{\sinh\mu_1} &#x3D;  R_1\\&amp;\frac{a}{\sinh\mu_2} &#x3D; R_2\end{align*}\tag{3}$$<br>解得<br>$$\begin{align*}&amp;a&#x3D;\frac{\sqrt{R_1^4+R_2^4+d^4-2R_1^2R_2^2-2d^2R_1^2-2d^2R_2^2}}{2d}\\ &amp;\cosh\mu_1&#x3D;\frac{-R_1^2+R_2^2-d^2}{2dR_1}\\ &amp;\cosh\mu_2&#x3D;\frac{-R_1^2+R_2^2+d^2}{2dR_2}\end{align*}\tag{4}$$<br>这样便将坐标系确定下来。容易验证双球坐标系是正交坐标系，计算其拉梅系数$h_p&#x3D;\sqrt{\left(\frac{\partial x}{\partial p}\right)^2+\left(\frac{\partial y}{\partial p}\right)^2+\left(\frac{\partial z}{\partial p}\right)^2}$，其中$p &#x3D; \eta,\mu,\phi$，有<br>$$\begin{align*}h_\eta&amp;&#x3D;h_\mu &#x3D; \frac{a}{\cosh\mu-\cos\eta}\\h_\phi &amp;&#x3D; \frac{a\sin\eta}{\cosh\mu-\cos\eta}\end{align*}\tag{5}$$<br>因此有<br>$$\begin{align*}\nabla^2&amp;&#x3D;\frac{1}{h_\eta  h_\mu h_\phi}\left(\frac{\partial}{\partial\eta}\left(\frac{h_\mu h_\phi}{h_\eta}\frac{\partial}{\partial\eta}\right)+\frac{\partial}{\partial\mu}\left(\frac{h_\eta h_\phi}{h_\mu}\frac{\partial}{\partial\mu}\right)+\frac{\partial}{\partial\phi}\left(\frac{h_\eta h_\mu}{h_\phi}\frac{\partial}{\partial\phi}\right)\right)\\&amp;&#x3D;\small\frac{(\cosh\mu-\cos\eta)^3}{a^2\sin\eta}\left[\sin\eta\frac{\partial}{\partial\mu}\left(\frac{1}{\cosh\mu-\cos\eta}\frac{\partial}{\partial\mu}\right)+\frac{\partial}{\partial\eta}\left(\frac{\sin\eta}{\cosh\mu-\cos\eta}\frac{\partial}{\partial\eta}\right)+\frac{1}{\sin\eta(\cosh\mu-\cos\eta)}\frac{\partial^2}{\partial\phi^2}\right]\end{align*}\tag{6}$$</p>
+<h2 id="建立方程"><a href="#建立方程" class="headerlink" title="建立方程"></a>建立方程</h2><p>除边界外，空间中无自由电荷，由对称性，知电势分布与方位角$\phi$无关。设电势为$\varphi&#x3D;\varphi_{(\mu,\eta)}$，有<br>$$\nabla^2\varphi &#x3D; 0\tag{7}$$<br>引入变换<br>$$\psi &#x3D; \frac{\varphi}{\sqrt{\cosh\mu-\cos\eta}}\tag{8}$$<br>代入(6)(7)式，化简得<br>$$\left[\frac{\partial^2}{\partial\mu^2}+\frac{1}{\sin\eta}\frac{\partial}{\partial\eta}\left(\sin\eta\frac{\partial}{\partial\eta}\right)+\frac{1}{\sin^2\eta}\frac{\partial^2}{\partial\phi^2}-\frac{1}{4}\right]\psi&#x3D;0\tag{9}$$<br>同时，边界条件(设球壳1的电势为$0$，球壳2的电势为$V$)<br>$$\begin{align*}&amp;\sqrt{\cosh\mu_1-\cos\eta}\;\psi_{(\mu_1,\eta)} \equiv 0\\&amp;\sqrt{\cosh\mu_2-\cos\eta}\;\psi_{(\mu_2,\eta)} \equiv V\end{align*}\tag{10}$$<br>(9)(10)式即求解本问题的方程。</p>
+<h2 id="求解方程"><a href="#求解方程" class="headerlink" title="求解方程"></a>求解方程</h2><p>对(9)式进行分离变量求解。设$\psi_{(\mu,\eta)}&#x3D;M_{(\mu)}H_{(\eta)}$，得<br>$$\frac{1}{M}\frac{d^2M}{d\mu^2}-\frac{1}{4}&#x3D;-\left[\frac{1}{H\sin\eta}\frac{\partial}{\partial\eta}\left(\sin\eta\frac{dH}{d\eta}\right)\right]\tag{11}$$<br>显然，上式左右两边都应是常量，即($l$为常量)<br>$$\begin{align*}&amp;\frac{1}{M}\frac{d^2M}{d\mu^2}-\frac{1}{4}&#x3D;l(l+1)\\&amp;\frac{1}{H\sin\eta}\frac{\partial}{\partial\eta}\left(\sin\eta\frac{dH}{d\eta}\right)&#x3D;-l(l+1)\end{align*}\tag{11*}$$<br>观察(11*)的第二式，此即勒让德方程，当且仅当 <strong>$l$为整数</strong> 时有收敛解<br>$$H&#x3D;A_lP_l{(\cos\eta)}\tag{12}$$<br>其中，$P_l(x)$为关于$x$的勒让德多项式，$A_l$为常系数。<br>同时，对(11*)的第一式，易得<br>$$M&#x3D;B_l\sinh\left((l+\frac{1}{2})\mu\right)+C_l\cosh\left((l+\frac{1}{2})\mu\right)\tag{13}$$<br>由以上各式，吸收常系数，并且根据对称性丢弃$l&lt;0$的情况，化简得<br>$$\psi&#x3D;\sum_{l&#x3D;0}^\infty \left[\left(A_l\sinh((l+\frac{1}{2})\mu)+B_l\cosh((l+\frac{1}{2})\mu)\right)P_l(\cos\eta)\right]\tag{14}$$<br>代入边界，由(10)第一式，可知<br>$$A_l\sinh\left((l+\frac{1}{2})\mu_1\right)+B_l\cosh\left((l+\frac{1}{2})\mu_1\right)\equiv0\tag{15}$$<br>对于(10)第二式，结合(14)式改写有<br>$$\frac{1}{\sqrt{\cosh\mu_2-\cos\eta}}&#x3D;\frac{1}{V}\sum_{l&#x3D;0}^\infty \left[\left(A_l\sinh((l+\frac{1}{2})\mu_2)+B_l\cosh((l+\frac{1}{2})\mu_2)\right)P_l(\cos\eta)\right]\tag{16}$$<br>而勒让德多项式的生成函数<br>$$\frac{1}{\sqrt{1-2rx+r^2}}&#x3D;\sum_{l&#x3D;0}^\infty r^l P_l(x)\tag{17}$$<br>故取$r&#x3D;e^{-\mu_2}$，化简得<br>$$\frac{1}{\sqrt{\cosh\mu_2-x}}&#x3D;\sqrt{2}\sum_{l&#x3D;0}^\infty e^{-(l+\frac{1}{2})\mu_2}P_l(x)\tag{18}$$<br>对比(16)式，得到<br>$$A_l\sinh\left((l+\frac{1}{2})\mu_2\right)+B_l\cosh\left((l+\frac{1}{2})\mu_2\right)\equiv\sqrt{2}Ve^{-(l+\frac{1}{2})\mu_2}\tag{19}$$<br>解得<br>$$\begin{align*}&amp;A_l &#x3D; \sqrt{2}Ve^{-(l+\frac{1}{2})\mu_2}\frac{\cosh((l+\frac{1}{2})\mu_1)}{\sinh((l+\frac{1}{2})(\mu_2-\mu_1))}\\&amp;   B_l &#x3D; -\sqrt{2}Ve^{-(l+\frac{1}{2})\mu_2}\frac{\sinh((l+\frac{1}{2})\mu_1)}{\sinh((l+\frac{1}{2})(\mu_2-\mu_1))}\end{align*}\tag{20}$$<br>代入(8)(14)式，化简得电势<br>$$\varphi&#x3D;V\sqrt{2(\cosh\mu-cos\eta)}\sum_{l&#x3D;0}^\infty\left[ e^{-(l+\frac{1}{2})\mu_2}\frac{\sinh((l+\frac{1}{2})(\mu-\mu_1))}{\sinh((l+\frac{1}{2})(\mu_2-\mu_1)}P_l(\cos\eta)\right]\tag{21}$$</p>
+<h2 id="求解电容"><a href="#求解电容" class="headerlink" title="求解电容"></a>求解电容</h2><p>高斯定理，得到球壳1表面电荷密度<br>$$\sigma&#x3D;-\varepsilon_0(\left.\nabla\varphi\right| _ {\mu&#x3D;\mu_1}\cdot\hat{n})\tag{22}$$<br>在双球坐标系下，考虑球面为等$\mu$面，且$\hat{n}$为$\mu$减小方向，有<br>$$\left.\nabla\varphi\right| _ {\mu&#x3D;\mu_1}\cdot\hat{n} &#x3D; -\frac{1}{h_\mu}\left.\frac{\partial\varphi}{\partial\mu}\right| _ {\mu&#x3D;\mu_1}\tag{23}$$<br>将(21)代入(23)式，化简得到<br>$$\left.\nabla\varphi\right| _ {\mu&#x3D;\mu_1}\cdot\hat{n} &#x3D;-\frac{\sqrt{2(\cosh\mu_1-cos\eta)^3}\;V}{a}\sum_{l&#x3D;0}^\infty\left[\frac{(l+\frac{1}{2}); e^{-(l+\frac{1}{2})\mu_2}}{\sinh((l+\frac{1}{2})(\mu_2-\mu_1))}P_l(\cos\eta)\right]\tag{24}$$<br>由于球壳1为低电势，因此总带电<br>$$Q&#x3D;-\iint_{球壳1}\sigma dS\tag{25}$$<br>在双球坐标系下，改写(25)式<br>$$Q&#x3D;- \underset{0\le\phi&lt;2\pi,0\le\eta&lt;\pi}{\iint} \sigma h_\eta h_\phi d\phi d\eta\tag{26}$$<br>因此代入有<br>$$\begin{align*}Q&#x3D;-&amp;\sqrt{2}\varepsilon_0aV\sum_{l&#x3D;0}^\infty\left[\frac{(l+\frac{1}{2})\; e^{-(l+\frac{1}{2})\mu_2}}{\sinh((l+\frac{1}{2})(\mu_2-\mu_1))}\underset{0\le\phi&lt;2\pi,0\le\eta&lt;\pi}{\iint}\frac{\sin\eta}{\sqrt{\cosh\mu_1-\cos\eta}}P_l(\cos\eta)d\phi d\eta\right]\\&#x3D;&amp;2\sqrt{2}\pi\varepsilon_0aV\sum_{l&#x3D;0}^\infty\left[\frac{(l+\frac{1}{2})\; e^{-(l+\frac{1}{2})\mu_2}}{\sinh((l+\frac{1}{2})(\mu_1-\mu_2))}\int_{-1}^{1}\frac{P_l(\cos\eta)d(\cos\eta)}{\sqrt{\cosh\mu_1-\cos\eta}}\right]\end{align*}\tag{27}$$<br>对于积分，考虑(18)式，由于$P_l(x)$的正交性，即<br>$$\begin{align*}\int_{-1}^1P_m(x)P_n(x)dx &#x3D; \frac{2}{2m+1}\delta_{mn}\end{align*}\tag{28}$$<br>【注：上式中$\delta_{mn}$前的系数可以由$P_l(x)&#x3D;\frac{1}{2^ll!}\frac{d^l}{dx^l}(x^2-1)^l$得到】</p>
+<p>因此由(18)式可得<br>$$\begin{align*}\int_{-1}^1\frac{P_m(x)dx}{\sqrt{\cosh\mu_1-x}}&amp;&#x3D;\sqrt{2}\sum_{l&#x3D;0}^\infty \left[e^{-(l+\frac{1}{2})\mu_1}\int_{-1}^1P_l(x)P_m(x)dx\right]\&amp;&#x3D;\frac{2\sqrt{2}}{2m+1}e^{-(l+\frac{1}{2})\mu_1}\end{align*}\tag{29}$$<br>代入(27)式，化简得<br>$$Q&#x3D;4\pi\varepsilon_0aV\sum_{l&#x3D;0}^\infty\frac{e^{-(l+\frac{1}{2})(\mu_1+\mu_2)}}{\sinh((l+\frac{1}{2})(\mu_1-\mu_2))}\tag{30}$$<br>因此电容<br>$$C&#x3D;\frac{Q}{V}&#x3D;4\pi\varepsilon_0a\sum_{l&#x3D;0}^\infty\frac{e^{-(l+\frac{1}{2})(\mu_1+\mu_2)}}{\sinh((l+\frac{1}{2})(\mu_1-\mu_2))}\tag{31}$$<br>如果代入(4)式，令$L&#x3D;\sqrt{R_1^4+R_2^4+d^4-2R_1^2R_2^2-2d^2R_1^2-2d^2R_2^2}$，化简得<br>$$ C&#x3D;4\pi\epsilon_0\sum_{l&#x3D;0}^\infty\frac{L\left[(R_2^2-R_1^2)(R_2^2-R_1^2-L)-d^2(R_1^2+R_2^2)\right]^{l+\frac{1}{2}}}{d^{2l+2}\left[\left(R_1^2+R_2^2-d^2+L\right)^{l+\frac{1}{2}}-\left(R_1^2+R_2^2-d^2-L\right)^{l+\frac{1}{2}}\right]}\tag{32}$$</p>
+<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p>考虑当内部球壳球心相对外部球壳的球心的偏移为较小，即$d\ll R_1,R_2$时<br>由(32)式，保留$d$的最低项，得<br>$$C\approx 4\pi\varepsilon_0\left(\frac{R_1R_2}{R_2-R_1}+\frac{R_1^3R_2^3d^2}{(R_2^3-R_1^3)(R_2^2-R_1^2)^2}\right)\tag{33}$$</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 黑洞
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Irfnfnkemed
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+<canvas
+        id="fireworks"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+<canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
+<div id="cursor"></div>
+<link rel="stylesheet" href="/css/cursor.min.css" />
+<script src="/js/cursor.min.js"></script>
+</html>
