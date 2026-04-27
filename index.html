@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TODO Name</title>
+  <meta name="description" content="TODO: academic homepage" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <style>
+    :root {
+      --text: #111;
+      --muted: #555;
+      --line: #e5e5e5;
+      --bg: #fff;
+      --max: 860px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Times New Roman", Times, serif;
+      line-height: 1.65;
+    }
+    a { color: #111; text-decoration: none; border-bottom: 1px solid #bbb; }
+    a:hover { border-bottom-color: #111; }
+    .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.95rem;
+    }
+    nav a.blog {
+      font-weight: 700;
+      border-bottom: 1px solid #111;
+    }
+    section { margin: 0 0 2rem; }
+    h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.9rem;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    h2 {
+      margin: 0 0 0.55rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    p { margin: 0.35rem 0; }
+    .muted { color: var(--muted); }
+    ul { margin: 0.4rem 0 0.2rem 1.2rem; padding: 0; }
+    li { margin: 0.35rem 0; }
+    .meta {
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 0.35rem 0.9rem;
+      margin-top: 0.7rem;
+      font-size: 0.98rem;
+    }
+    .label { color: var(--muted); }
+    footer {
+      margin: 2.2rem 0 2rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .todo { color: #7a7a7a; font-style: italic; }
+    @media (max-width: 640px) {
+      .meta { grid-template-columns: 1fr; gap: 0.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="name">TODO Name</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+        <a class="blog" href="/blog">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about">
+      <h1>TODO Full Name</h1>
+      <p class="muted">TODO Position, TODO Department, TODO University</p>
+      <div class="meta">
+        <div class="label">Email</div><div><a href="mailto:TODO@university.edu">TODO@university.edu</a></div>
+        <div class="label">Scholar</div><div><a href="#">TODO Google Scholar Profile</a></div>
+        <div class="label">ORCID</div><div><a href="#">TODO ORCID</a></div>
+      </div>
+      <p class="todo">TODO: 2-3 sentence research statement.</p>
+    </section>
+
+    <section id="research">
+      <h2>Research Interests</h2>
+      <ul>
+        <li class="todo">TODO Interest 1</li>
+        <li class="todo">TODO Interest 2</li>
+        <li class="todo">TODO Interest 3</li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <ul>
+        <li>
+          <strong>[TODO 2026]</strong> TODO Paper Title.<br />
+          <span class="muted">TODO Authors. TODO Venue, 2026.</span>
+          <div><a href="#">PDF</a> / <a href="#">Code</a> / <a href="#">BibTeX</a></div>
+        </li>
+        <li>
+          <strong>[TODO 2025]</strong> TODO Paper Title.<br />
+          <span class="muted">TODO Authors. TODO Venue, 2025.</span>
+          <div><a href="#">PDF</a> / <a href="#">Code</a></div>
+        </li>
+      </ul>
+      <p class="todo">TODO: Replace with full publication list.</p>
+    </section>
+
+    <section id="cv">
+      <h2>CV</h2>
+      <p><a href="/files/cv.pdf">Download CV (PDF)</a></p>
+      <p class="todo">TODO: put CV file at /source/files/cv.pdf</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Office: <span class="todo">TODO Building, Room</span></p>
+      <p>Address: <span class="todo">TODO Address</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 TODO Name. Blog at <a href="/blog">/blog</a>.</div>
+  </footer>
+</body>
+</html>

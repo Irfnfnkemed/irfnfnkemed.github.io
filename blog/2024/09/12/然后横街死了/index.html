@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+    <meta charset="utf-8" />
+    <title>然后横街死了 | 黑洞</title>
+    <meta name="author" content="Irfnfnkemed" />
+    <meta name="description" content="总要惘然选择欢喜带来的忧愁，总要坦然面对失去换来的拥有" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>黑洞</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/blog">
+            <i class="fa-solid fa-pen-nib fa-fw"></i>
+            <span>&ensp;Blog</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;黑洞</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/blog">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-pen-nib fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Blog</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>然后横街死了</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/12
+        </span>
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%9D%82%E6%83%B3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                杂想
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/blog/tags/%E8%83%A1%E8%A8%80%E4%B9%B1%E8%AF%AD/" style="color: #ff7d73">
+                    胡言乱语
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>横街被拆了。</p>
+<span id="more"></span>
+
+<p>施工的挡牌兀自立在大魁桥前方，逐渐成型的高楼突兀地在眼前耸立，刺穿这座小镇最古老的心脏。现代工业的伟力在这里得到了完美的体现。所以老横街什么都没有留下。她走得干净，没有落下一片旧瓦。</p>
+<p>此路不通。</p>
+<p>老一代人总是说，老钱库有两条街，一条横街，一条东西街。然后横街死了。小学时，每个班的语文老师都会布置一篇名为《大魁桥》的作文，这座连接着东西街和横街的古桥，是所有钱库人的记忆与骄傲。然后横街死了。还记得从前我蹲在老爸的摩托车前面，在横街摇晃着颠簸着去书店买书。然后横街死了。</p>
+<p>翻新去旧，横街成为了城中村。</p>
+<p>然后横街死了。</p>
+<p>一直不明白，为什么我们对于拆迁始终抱着那么高的热情，给一幢又一幢的老房子画上鲜红的“拆”字，然后开着挖土机一路铲平；一直不明白，为什么到处都盖起了高楼大厦，但是人们却仍然买不起房子，失去家园，失去安身之所。有的时候，不禁会想到，当年千岛湖蓄水的时候，当年三峡大坝拦水的时候，那些背井离乡的人们心中，该是怎样的痛苦和哀伤。千年祖地沉入水底，世代回忆没入江河，这该是怎样的失落与死寂。</p>
+<p>然后横街死了。</p>
+<p>所以我不属于今天的钱库。于是我走过兴隆街桥头，那家平阳老板的叉烧饭如今在何方？于是我走过环西路路口，那爿早餐店如今为何成了平地？于是我走过人本超市门口，那里从何时无人踏足？钱库的石头会走路，于是公园路西侧的“钱库共青林”地标石自顾自地飘向东侧，把树林生长成楼房。钱库的屋子会遁地，于是派出所后面的老房子自顾自地沉入大地，留下深深的水坑。钱库的田野会魔法，于是龙金大道外的稻田自顾自地矗立起高楼，挂起闪亮的灯光。</p>
+<p>时间什么也没有留下。于是记忆中那条弯弯绕绕的横街坍塌成了平地，没有留下一片旧瓦；于是记忆中放学回家的路边树林生长出了楼房，没有留下一根树枝；于是记忆中二中门前荒凉的半条泥巴路铺平成了四车道沥青路，没有留下一块碎石。时间又什么都留下了。于是二小仍然敞开怀抱，迎着孩子们从童年走来，迎着孩子们向远方走去；于是菜场仍然终日喧闹，吆喝着柴米油盐，吆喝着布帛菽粟；于是大魁桥仍然静静守望，守着横街的死亡，守着东西街的衰老。时间抹平一切，又在我们即将忘记的时候，把曾经的灵魂血淋淋地从沉寂的梦乡拉到我们的面前。</p>
+<p>然后横街死了。</p>
+<p>人的悲剧性实质，在于走向前方、到处流浪时，又时时刻刻地惦念着正在远去和久已不见的家、家园和家乡。我知道我在逃离，我知道这里的一切都比大城市落后十年，我希望自己的将来的孩子能够在大城市生活，享受更好的条件。但是我又放不下，放不下在鹡鸰河畔漫步的深夜，放不下坐着三轮车归家的傍晚，放不下在操场追逐的下午，放不下在公园饭庄吃饭的中午，放不下一步一步踩田埂的早上，放不下菜场喧闹忙碌的清晨。所以我期待。所以我害怕。</p>
+<p>当土地上的人和物渐渐远去，属于某个人的故事终究将成为只属于他的回忆。今天的孩子看见的，是竖立着高楼的钱库；今天的孩子诉说的，是标准的普通话；今天的孩子行走的，是属于他们的钱库。所以他们不会再住进五六层的直间，所以他们不会再在街头巷尾用蛮话问别人“走何落去”，所以他们不会再记得大魁桥的对岸是古老的横街。所以我的故事，终究只会是我的故事。</p>
+<p>我和这片土地的缘分，终究是渐渐散了。</p>
+<p>弯弯曲曲的老街终日阴雨绵绵，有孩子独自向小巷深处跑去。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 黑洞
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Irfnfnkemed
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+<canvas
+        id="fireworks"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+<canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
+<div id="cursor"></div>
+<link rel="stylesheet" href="/css/cursor.min.css" />
+<script src="/js/cursor.min.js"></script>
+</html>
